@@ -1,0 +1,19 @@
+<div>
+  <parties-form style="float: left"></parties-form>
+
+  <input type="text" #searchText placeholder="Search by location">
+  <button type="button" (click)="search(searchtext.value)">Search</button>
+
+  <login-buttons></login-buttons>
+ 
+  <ul *ngIf="!loading">
+    <li *ngFor="let party of parties">
+      <a [routerLink]="['/party', party._id]">{{party.name}}</a>
+      <p>{{party.description}}</p>
+      <p>{{party.location}}</p>
+      <button (click)="removeParty(party)">X</button>
+    </li>
+  </ul>
+
+  <pagination-controls (pageChange)="onPageChanged($event)"></pagination-controls>
+</div>
