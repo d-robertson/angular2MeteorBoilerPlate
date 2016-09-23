@@ -25,3 +25,6 @@ dispatch:mocha-phantomjs
 shell-server
 accounts-password
 anti:fake
+tmeasday:publish-counts
+check
+email

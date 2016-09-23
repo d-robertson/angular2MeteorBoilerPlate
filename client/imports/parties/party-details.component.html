@@ -1,14 +1,28 @@
 <form *ngIf="party" (submit)="saveParty()">
   <label>Name</label>
   <input type="text" [(ngModel)]="party.name" name="name">
- 
+
   <label>Description</label>
   <input type="text" [(ngModel)]="party.description" name="description">
- 
+
   <label>Location</label>
   <input type="text" [(ngModel)]="party.location" name="location">
- 
+
   <button type="submit">Save</button>
   <a [routerLink]="['/']">Cancel</a>
 </form>
 
+<ul>
+  Users to invite:
+  <li *ngFor="let user of users">
+    <div>{{ user | displayName }}</div>
+    <button (click)="invite(user)">Invite</button>
+  </li>
+</ul>
+
+<div>
+  <h2>Reply to the invitation</h2>
+  <input type="button" value="I'm going!" (click)="reply('yes')">
+  <input type="button" value="Maybe" (click)="reply('maybe')">
+  <input type="button" value="No" (click)="reply('no')">
+</div>

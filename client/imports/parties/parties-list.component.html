@@ -1,17 +1,32 @@
 <div>
   <parties-form style="float: left"></parties-form>
 
-  <input type="text" #searchText placeholder="Search by location">
+  <input type="text" #searchtext placeholder="Search by Location">
   <button type="button" (click)="search(searchtext.value)">Search</button>
 
   <login-buttons></login-buttons>
- 
+
+  <h1>Parties:</h1>
+
+  <div>
+    <select #sort (change)="changeSortOrder(sort.value)">
+      <option value="1" selected>Ascending</option>
+      <option value="-1">Descending</option>
+    </select>
+  </div>
+
   <ul *ngIf="!loading">
     <li *ngFor="let party of parties">
       <a [routerLink]="['/party', party._id]">{{party.name}}</a>
       <p>{{party.description}}</p>
       <p>{{party.location}}</p>
       <button (click)="removeParty(party)">X</button>
+      <div>
+        Who is coming:
+        Yes - {{party | rsvp: 'yes'}}
+        No - {{party | rsvp: 'no'}}
+        Maybe - {{party | rsvp: 'maybe'}}
+      </div>
     </li>
   </ul>
 
